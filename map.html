@@ -9,9 +9,11 @@ svg:hover path:not(:hover) {opacity: 0.5; }
 path:not(:hover) {display: block;}
 
 </style>
-<nav><p>Click to view</p> <p item-right id="if"></p></nav>
+<bg ></bg>
+<nav><p unbound>Click to view</p> <p item-right id="if"></p></nav>
 
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
+<screen>
+<svg version="1.1" map id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 <path info="Gate 1" fill="#FDFD0B" opacity="1.000000" stroke="none" d="M362.848877,526.853333 
 C364.273682,532.588562 366.756042,538.299011 366.891235,544.064453 
@@ -1517,6 +1519,7 @@ C357.808014,279.298950 360.784943,279.581055 364.220215,279.919006
 z"></path>
 
 </svg>
+</screen>
 
 </body>
 
@@ -1532,6 +1535,40 @@ path.addEventListener('mouseleave', function() {
 document.querySelector('#if').innerText = '';
 });
 });
+
+
+const loadMapSettings = async (settingsUrl) => {
+const response = await fetch(settingsUrl);
+const text = await response.text();
+const gates = text.split('\n\n--\n').map(section => {
+const lines = section.split('\n');
+const name = lines[0].split(': ')[1];
+const part = lines[1].split(': ')[1];
+const images = lines[2].split(': ')[1].split(', ');
+return { name, part, images };
+});
+return gates;
+}
+
+const addMapToSvg = async (mapSvgElement, settingsUrl) => {
+const gates = await loadMapSettings(settingsUrl);
+for (const gate of gates) {
+const svgResponse = await fetch(gate.part);
+const svgText = await svgResponse.text();
+const svgElement = new DOMParser().parseFromString(svgText, 'image/svg+xml').documentElement;
+svgElement.setAttribute('info', gate.name);
+gate.images.forEach(imageSrc => {
+const imgElement = document.createElement('img');
+imgElement.src = imageSrc;
+imgElement.alt = gate.name;
+svgElement.appendChild(imgElement);
+});
+mapSvgElement.appendChild(svgElement);
+}
+}
+
+const mapSvgElement = document.getElementById('map');
+addMapToSvg(mapSvgElement, 'map.config');
 
 </script>
 
