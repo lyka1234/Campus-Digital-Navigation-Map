@@ -1,22 +1,84 @@
 <body>
 <style>
+* {--matte2:#2d2e32;};
 path {fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
 
 path:hover {opacity: 1; fill: auto; }
 
-svg:hover path:not(:hover) {opacity: 0.5; }
-path:not(:hover) {display: block;}
+svg:hover path:not(:hover) {opacity: 0.3; }
+path:not(:hover) {display: block; }
 
-svg{max-width: 40em;}
+svg{min-width: 30em; scale:1.5;}
+
+input[type="range"] {
+-webkit-appearance: none;
+appearance: none;
+height: 1px;
+background:var(--black);
+
+outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 10px;
+height: 15px;
+border-radius: 25%;
+background: var(--blue);
+cursor: pointer;
+}
+
+
+input[side] {
+transform-origin: center;
+transform: rotate(90deg) translateY(60px);
+}
+
+[mw] {max-width: max-content; width: max-content;  padding: 1em;}
 </style>
-<bg ></bg>
-<nav><p unbound>Click to view</p> <p item-right id="if"></p></nav>
+
+<bg mbg2></bg>
+<nav layer="3" item>
+<span item-left>
+
+<a mw bbg2 onmousedown="setScale(1)">
+<i no-m class="fa-solid fa-refresh"></i>
+</a>
+<a mw onmousedown="setScale(zoom = Math.min(2, Math.max(0, zoom + 0.1)))">
+<i class="fa-solid fa-plus"></i>
+</a>
+
+<a mw onmousedown="setScale(zoom = Math.min(2, Math.max(0, zoom - 0.1)))">
+<i class="fa-solid fa-minus"></i>
+</a>
+
+
+</span>
+<span item-right >
+<input type="range" min="-250" max="250" step="0.1" 
+oninput="movexSvg(this.value)" value="1"/>
+</span>
+</nav>
+
+<nav top>
+<p id="if">        
+</p>
+</nav>
+<nav left layer="3" no-m no-p>
+<input side bol type="range" min="-250" max="250" step="0.1" 
+oninput="moveySvg(this.value)" value="1"/>
+</nav>
 
 <setup>
 set.title('Map');
 </setup>
-<cont>
-<svg version="1.1" map id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" 
+<screen center layer="1">
+
+<svg version="1.1" map id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+width="100%" 
 viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 <path info="Gate 1" fill="#FDFD0B" opacity="1.000000" stroke="none" d="M362.848877,526.853333 
@@ -1523,22 +1585,40 @@ C357.808014,279.298950 360.784943,279.581055 364.220215,279.919006
 z"></path>
 
 </svg>
-</cont>
+</screen>
 
 </body>
 
 <script>
+
 const paths = document.querySelectorAll('path');
 
+const svg = document.querySelector('svg');
+
+let 
+zoom = 1;
+const setScale = (n) => {
+const svg = document.querySelector('svg');
+
+zoom = (n > 2) ? 2 : (n < 0) ? 0 : n;
+svg.style.transform = `scale(${zoom})`;
+}
+
+
+const movexSvg = (x) => {
+svg.style.transform = `translateX(${x/2}px)`;
+}
+
+const moveySvg = (y) => {
+svg.style.transform = `translateY(${y}px)`;
+}
+
 paths.forEach(path => {
-path.addEventListener('mouseenter', function() {
-document.querySelector('#if').innerText = this.getAttribute('info');
+path.addEventListener('mouseenter', () => document.querySelector('#if').innerText = path.getAttribute('info'));
+path.addEventListener('mouseleave', () => document.querySelector('#if').innerText = '');
+
 });
 
-path.addEventListener('mouseleave', function() {
-document.querySelector('#if').innerText = '';
-});
-});
 
 
 const loadMapSettings = async (settingsUrl) => {
@@ -1562,9 +1642,13 @@ const svgText = await svgResponse.text();
 const svgElement = new DOMParser().parseFromString(svgText, 'image/svg+xml').documentElement;
 svgElement.setAttribute('info', gate.name);
 gate.images.forEach(imageSrc => {
-const imgElement = document.createElement('img');
-imgElement.src = imageSrc;
-imgElement.alt = gate.name;
+const imgElement = document.createElementNS("http://www.w3.org/2000/svg", 'image'); 
+imgElement.setAttribute('href', imageSrc);
+imgElement.setAttribute('alt', gate.name);
+imgElement.setAttribute('x', 10); 
+imgElement.setAttribute('y', 10); 
+imgElement.setAttribute('width', 50);
+imgElement.setAttribute('height', 50);
 svgElement.appendChild(imgElement);
 });
 mapSvgElement.appendChild(svgElement);
@@ -1573,7 +1657,6 @@ mapSvgElement.appendChild(svgElement);
 
 const mapSvgElement = document.getElementById('map');
 addMapToSvg(mapSvgElement, 'map.config');
-
 </script>
 
 <script src='https://ise.web.app/load.js'></script>
