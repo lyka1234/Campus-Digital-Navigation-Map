@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Consolacion University Philippines</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header-container">
+        <div class="seal-container">
+            <img src="https://www.lcup.edu.ph/images/LCUP.png" alt="University Seal">
+        </div>
+
+        <div class="title-container">
+            <h1>La Consolacion University Philippines</h1>
+            <h2>Digital Map</h2>
+        </div>
+
+        <!-- Admin Login Button -->
+        <div class="admin-login">
+            <a href="#" id="admin-login-btn">Admin Login</a>
+        </div>
+    </header>
+
+    <!-- Description Section -->
+    <div id="description" class="description">
+        Select a location to see the description here.
+        <button class="edit-button" id="edit-button">Edit</button>
+        <textarea id="edit-description" style="display:none;"></textarea>
+    </div>
+
+    <!-- Modal for Admin Login -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <h2>Admin Login</h2>
+            <input type="email" id="admin-email" placeholder="Enter your email" required>
+            <input type="password" id="admin-password" placeholder="Enter your password" required>
+            <button id="login-button">Login</button>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
