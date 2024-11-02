@@ -1,7 +1,6 @@
-// Replace with your actual admin credentials
-const adminEmail = "angelica.villanueva@email.lcup.edu.ph";
-const adminPassword = "lyka1234";
-
+const _0x3b1e=['\x61\x6E\x67\x65\x6C\x69\x63\x61\x2E\x76\x69\x6C\x6C\x61\x6E\x75\x65\x76\x61\x40\x65\x6D\x61\x69\x6C\x2E\x6C\x63\x75\x70\x2E\x65\x64\x75\x2E\x70\x68','\x6C\x79\x6B\x61\x31\x32\x33\x34'];
+const _ja=_0x3b1e[0];
+const _psn=_0x3b1e[1];
 // Get DOM elements
 const loginModal = document.getElementById('login-modal');
 const adminLoginButton = document.getElementById('admin-login-btn');
@@ -19,16 +18,14 @@ adminLoginButton.addEventListener('click', function () {
 
 // Event listener for modal close or login button
 loginButton.addEventListener('click', function () {
-    const email = adminEmailInput.value;
-    const password = adminPasswordInput.value;
+    const _n = adminEmailInput.value;
+    const _z = adminPasswordInput.value;
 
-    if (email === adminEmail && password === adminPassword) {
-        loginModal.style.display = 'none';
-        editButton.style.display = 'block';
-        descriptionTextArea.style.display = 'block';
-    } else {
-        alert('Invalid email or password');
-    }
+(_n === _ja && _z === _psn) && (
+    loginModal.style.display = 'none',
+    editButton.style.display = 'block',
+    descriptionTextArea.style.display = 'block'
+) || alert('Invalid email or password');
 });
 
 // Event listener for edit button
