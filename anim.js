@@ -37,7 +37,7 @@ trY = cY - (y * zom);
 };
 
 const rstT = () => {
-zom = 0.8; 
+zom = 1; 
 trX = 0; 
 trY = 0;
 ani();
@@ -48,7 +48,7 @@ pth.forEach(p => {
 p.addEventListener('mouseenter', () => {
 pnEl.innerText = p.getAttribute('name');
 
-zom = 1; 
+
 ani(); 
 
 });
@@ -61,7 +61,7 @@ const cY = rect.top + rect.height / 2;
 
 movX(cX);
 movY(cY);
-zom = 1; 
+ 
 ani(); 
 
 setTimeout(() => {

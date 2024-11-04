@@ -15,11 +15,40 @@ path.setAttribute("images", images || "");
 svg.appendChild(path);
 } 
 };
+
 let fnd=v=>{ 
-let elems = document.querySelectorAll(`path[name*="${v}"], path[info*="${v}"]`); 
-return elems.length ? Array.from(elems).map(e => ({ name: e.getAttribute('name'), info: e.getAttribute('info') })) : 'Keep Searching'; 
+let elems = document.querySelectorAll(`path[name], path[info]`); 
+let searchTerm = v.toLowerCase().replace(/\s+/g, ''); 
+let filtered = Array.from(elems).filter(e => 
+(e.getAttribute('name').toLowerCase().includes(searchTerm) || 
+e.getAttribute('info').toLowerCase().includes(searchTerm))
+); 
+return filtered.length ? filtered.map(e => ({ name: e.getAttribute('name'), info: e.getAttribute('info'), images: e.getAttribute('images') })) : 'Keep Searching'; 
 }; 
+
 let srt=v=>{ 
 let results = fnd(v); 
-document.getElementById('sro').innerText = results !== 'Keep Searching' ? results.map(r => `${r.name}, ${r.info}`).join('\n') : results; 
+let outputDiv = document.getElementById('sro');
+outputDiv.innerHTML = ''; 
+if (results !== 'Keep Searching') {
+results.forEach(r => {
+let a = document.createElement('a');
+a.innerText = `${r.name}`;
+a.href = '#';
+a.setAttribute('no-p','');
+a.setAttribute('no-m','');
+a.onclick = () => {
+pnEl.innerText = r.name;
+pdEl.innerText = r.info;
+mgEl.src = r.images || '';
+r.images && show('#mg') || hide('#mg');
+(r.info || r.images) && show('#isc');
 };
+outputDiv.appendChild(a);
+outputDiv.appendChild(document.createElement('br')); 
+});
+} else {
+outputDiv.innerText = results; 
+}
+};
+
