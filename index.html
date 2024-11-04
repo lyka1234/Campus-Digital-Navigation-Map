@@ -1,7 +1,20 @@
-
-<link rel="stylesheet" href="https://ise.web.app/load.css">
+<head>
+   <title>La consulation</title>
+   <meta name="description" content="Map">
+   <meta name="keywords" content="apple, fruit">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta og:image="true" content="https://ise.web.app/cover/1.png">
+   <meta image="true" content="https://ise.web.app/cover/1.png">
+   <meta og:image:width="true" content="1200">
+   <meta og:image:height="true" content="630">
+   <meta twitter:image="true" content="https://ise.web.app/cover/1.png">
+   <link rel="shortcut icon" type="image/x-icon" href="https://lcup.web.app/img/logo.png">
+   <link rel="stylesheet" href="https://ise.web.app/load.css">
+</head>
 <setup>
 set.title('Map');
+set.info('Map');
+set.icon('https://lcup.web.app/img/logo.png');
 </setup>
 <body no-p no-m>
 
@@ -79,12 +92,9 @@ img {outline: none; border: none; outline: none;}
 </span>
 
 <nav layer="3" no-m item>
-<span item-right="">
-
 <a mbg2 mw onmousedown="hide('#isc');show('#im')">
 <i class="fa-solid fa-close" m=""></i>
 </a>
-</span>
 </nav>
 
 
@@ -92,16 +102,18 @@ img {outline: none; border: none; outline: none;}
 <screen id="im" big-ml big-mb center layer="1">
 
 <nav layer="3" no-m item>
-<span item-right>
+<span item-left>
 <p id="pn"></p>
 </span>
 
+<span item-right>
 <a mbg2 mw onmousedown="rstT()">
 <i class="fa-solid fa-refresh" m=""></i>
 </a>
 <a mbg2 mw hide onmousedown="show('#isc');hide('#im')">
 <i class="fa-solid fa-info" m=""></i>
 </a>
+</span>
 </nav>
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
