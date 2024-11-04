@@ -6,7 +6,7 @@ const mgEl = document.querySelector('#mg')
 const pth = document.querySelectorAll('path');
 const svg = document.querySelector('svg');
 
-let zom = 1, trX = 0, trY = 0;
+let zom = 1, trX = -18.6, trY = 0;
 
 
 const dnh = n => {
@@ -27,7 +27,7 @@ ease: "power2.out"
 };
 
 const movX = (x) => {
-const cX = window.innerWidth / 2;
+const cX = window.innerWidth / 2 + 100;
 trX = cX - (x * zom);
 };
 
@@ -38,10 +38,11 @@ trY = cY - (y * zom);
 
 const rstT = () => {
 zom = 1; 
-trX = 0; 
+trX = -18.6; 
 trY = 0;
 ani();
 };
+rstT();
 
 pth.forEach(p => {
 
