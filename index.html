@@ -1,43 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Consolacion University Philippines</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<!-- Header Section -->
-<header class="header-container">
-<div class="seal-container">
-<img src="https://www.lcup.edu.ph/images/LCUP.png" alt="University Seal">
-</div>
-<div class="title-container">
-<h1>La Consolacion University Philippines</h1>
-<h2>Digital Map</h2>
-</div>
-<!-- Admin Login Button -->
-<div class="admin-login">
-<a href="#" id="admin-login-btn">Admin Login</a>
-</div>
-</header>
-<!-- Description Section -->
-<div id="description" class="description">
-Select a location to see the description here.
-<button class="edit-button" id="edit-button">Edit</button>
-<textarea id="edit-description" style="display:none;"></textarea>
-</div>
-<!-- Modal for Admin Login -->
-<div class="modal" id="login-modal">
-<div class="modal-content">
-<h2>Admin Login</h2>
-<input type="email" id="admin-email" placeholder="Enter your email" required>
-<input type="password" id="admin-password" placeholder="Enter your password" required>
-<button id="login-button">Login</button>
-</div>
-</div>
-<!-- JavaScript File -->
-<script src="script.js"></script>
+
+<link rel="stylesheet" href="https://ise.web.app/load.css">
+<setup>
+set.title('Map');
+</setup>
+<body no-p no-m>
+
+<style>
+* {--matte2:#202331;--blue2:hsl(229, 38%, 38%);
+animation: fadeIn 0.2s forwards;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: auto; }
+}
+
+@keyframes fadeOut {
+from { opacity: auto; }
+to { opacity: 0; }
+}
+
+path {fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
+
+path:hover {opacity: 1; fill: auto; }
+
+svg:hover path:not(:hover) {opacity: 0.3; }
+path:not(:hover) {display: block; }
+
+svg{min-width: 30em; scale:0.8;}
+
+input[type="range"] {
+-webkit-appearance: none;
+appearance: none;
+height: 1px;
+background:var(--matte2);
+
+outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 10px;
+height: 15px;
+border-radius: 25%;
+background: var(--blue);
+cursor: pointer;
+}
+
+input{
+transform: translateY(5px);
+}
+
+input[side] {
+transform-origin: center;
+transform: rotate(90deg) translateY(70px);
+}
+
+[mw] {max-width: max-content; width: max-content;  padding: 1em;}
+[left][ma]{margin: 0; padding:0.5em 0.5em 0.5em 1em; left: 0px;  }
+
+[bt]{border-top: var(--black2) solid 1px;}
+[br]{border-right: var(--black2) solid 1px; }
+[bb]{border-bottom: var(--black2) solid 1px;}
+
+img {outline: none; border: none; outline: none;}
+
+</style> 
+<bg bbg></bg> 
+
+<screen center id="isc" hide  >
+<span scroll>
+<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
+
+<p id="pd" ></p>
+
+</span>
+
+<nav layer="3" no-m item>
+<span item-right="">
+
+<a mbg2 mw onmousedown="hide('#isc');show('#im')">
+<i class="fa-solid fa-close" m=""></i>
+</a>
+</span>
+</nav>
+
+
+</screen>
+<screen id="im" big-ml big-mb center layer="1">
+
+<nav layer="3" no-m item>
+<span item-right>
+<p id="pn"></p>
+</span>
+
+<a mbg2 mw onmousedown="rstT()">
+<i class="fa-solid fa-refresh" m=""></i>
+</a>
+<a mbg2 mw hide onmousedown="show('#isc');hide('#im')">
+<i class="fa-solid fa-info" m=""></i>
+</a>
+</nav>
+
+<svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+width="100%" 
+viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
+
+</svg>
+</screen>
+
 </body>
-</html>
+
+
+
+<script src="config.js"></script>
+
+<script src="etc.js"></script>
+<script src="motorpool.js"></script>
+<script src="cloister.js"></script>
+<script src="miniforest.js"></script>
+<script src="ourlady_chapel.js"></script>  
+<script src="osagym.js"></script>
+<script src="fab.js"></script>
+<script src="cath.js"></script>
+<script src="ven_acadbld.js"></script>
+<script src="vmc.js"></script>
+<script src="aug_adminbld.js"></script>
+<script src="barcie.js"></script>
+<script src="stezek.js"></script>
+<script src="ostia.js"></script>
+<script src="idk2.js"></script>
+<script src="idk3.js"></script>
+<script src="conbld.js"></script>
+<script src="gracebld.js"></script>
+<script src="stninobld.js"></script>
+<script src="stpadre.js"></script>
+<script src="good.js"></script>
+<script src="innergarden.js"></script>
+<script src="ourlady.js"></script>
+<script src="barcelo.js"></script>
+<script src="stmonica.js"></script> 
+<script src="gratos.js"></script>
+<script src="stnino.js"></script>
+<script src="mary.js"></script>
+<script src="agustino.js"></script>
+<script src="kalin.js"></script>
+<script src="pool.js"></script>
+<script src="cafe.js"></script>
+<script src="idk2.js"></script>
+<script src="idk.js"></script>
+<script src="mr.js"></script>
+<script src="fish.js"></script>
+<script src="gate1.js"></script>
+<script src="gate2.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="anim.js" async></script>
+<script src='https://ise.web.app/load.js'></script>
