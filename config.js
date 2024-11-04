@@ -16,49 +16,60 @@ svg.appendChild(path);
 } 
 };
 
-let fnd=v=>{ 
-let elems = document.querySelectorAll(`path[name], path[info]`); 
-let searchTerm = v.toLowerCase().replace(/\s+/g, ''); 
-let filtered = Array.from(elems).filter(e => 
-(e.getAttribute('name').toLowerCase().includes(searchTerm) || 
-e.getAttribute('info').toLowerCase().includes(searchTerm))
-); 
-return filtered.length ? filtered.map(e => ({ name: e.getAttribute('name'), info: e.getAttribute('info'), images: e.getAttribute('images') })) : 'Keep Searching'; 
-}; 
+let debounceTimer;
+let debounce = (func, delay) => {
+clearTimeout(debounceTimer);
+debounceTimer = setTimeout(func, delay);
+};
 
-let srt=v=>{ 
-let results = fnd(v); 
+let fnd = v => {
+let elems = document.querySelectorAll(`path[name], path[info]`);
+let searchTerm = v.toLowerCase().replace(/\s+/g, '');
+let filtered = Array.from(elems).filter(e =>
+e.getAttribute('name').toLowerCase().includes(searchTerm) ||
+e.getAttribute('info').toLowerCase().includes(searchTerm)
+);
+return filtered.length ? filtered.map(e => ({
+name: e.getAttribute('name'),
+info: e.getAttribute('info'),
+images: e.getAttribute('images')
+})) : 'Keep Searching';
+};
+
+let srt = v => debounce(() => {
+let results = fnd(v);
 let outputDiv = document.getElementById('sro');
-outputDiv.innerText = ''; 
-if (results !== 'Keep Searching') {
-results.forEach(r => {
+outputDiv.innerText = '';
 
-(r.info || r.images) && (
-a = document.createElement('a'),
-a.innerText = `${r.name}`,
-a.href = '#',
-a.setAttribute('left',''),
-a.setAttribute('bdr','25'),
-a.setAttribute('mbg2',''),
-a.onclick = () => (
+if (results !== 'Keep Searching') {
+let fragment = document.createDocumentFragment(); 
+
+results.forEach(r => {
+let el;
+if (r.info || r.images) {
+el = document.createElement('a');
+el.innerText = r.name;
+el.href = '#';
+el.setAttribute('left', '');
+el.setAttribute('bdr', '25');
+el.setAttribute('mbg2', '');
+el.onclick = () => (
 pnEl.innerText = r.name,
 pdEl.innerText = r.info,
 mgEl.src = r.images || '',
-r.images && show('#mg') || hide('#mg'),
-(r.info || r.images) && show('#isc')
-),
-outputDiv.appendChild(a)
-) || (
-txta=document.createElement('p'),
-txta.innerText = r.name,
-txta.setAttribute('small-p',''),
-outputDiv.appendChild(txta)
-)
-
-
-});
+r.images ? show('#mg') : hide('#mg'),
+(r.info || r.images) ? show('#isc') : hide('#isc')
+);
 } else {
-outputDiv.innerText = results; 
+el = document.createElement('p');
+el.innerText = r.name;
+el.setAttribute('small-p', '');
 }
-};
+fragment.appendChild(el);
+});
 
+outputDiv.appendChild(fragment); 
+} else {
+outputDiv.innerText = results;
+}
+}, 300); 
