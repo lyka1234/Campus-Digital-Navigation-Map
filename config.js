@@ -29,23 +29,33 @@ return filtered.length ? filtered.map(e => ({ name: e.getAttribute('name'), info
 let srt=v=>{ 
 let results = fnd(v); 
 let outputDiv = document.getElementById('sro');
-outputDiv.innerHTML = ''; 
+outputDiv.innerText = ''; 
 if (results !== 'Keep Searching') {
 results.forEach(r => {
-let a = document.createElement('a');
-a.innerText = `${r.name}`;
-a.href = '#';
-a.setAttribute('no-p','');
-a.setAttribute('no-m','');
-a.onclick = () => {
-pnEl.innerText = r.name;
-pdEl.innerText = r.info;
-mgEl.src = r.images || '';
-r.images && show('#mg') || hide('#mg');
-(r.info || r.images) && show('#isc');
-};
-outputDiv.appendChild(a);
-outputDiv.appendChild(document.createElement('br')); 
+
+(r.info || r.images) && (
+a = document.createElement('a'),
+a.innerText = `${r.name}`,
+a.href = '#',
+a.setAttribute('left',''),
+a.setAttribute('bdr','25'),
+a.setAttribute('mbg2',''),
+a.onclick = () => (
+pnEl.innerText = r.name,
+pdEl.innerText = r.info,
+mgEl.src = r.images || '',
+r.images && show('#mg') || hide('#mg'),
+(r.info || r.images) && show('#isc')
+),
+outputDiv.appendChild(a)
+) || (
+txta=document.createElement('p'),
+txta.innerText = r.name,
+txta.setAttribute('small-p',''),
+outputDiv.appendChild(txta)
+)
+
+
 });
 } else {
 outputDiv.innerText = results; 
