@@ -1,15 +1,15 @@
 <head>
-   <title>La consulation</title>
-   <meta name="description" content="Map">
-   <meta name="keywords" content="apple, fruit">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta og:image="true" content="https://ise.web.app/cover/1.png">
-   <meta image="true" content="https://ise.web.app/cover/1.png">
-   <meta og:image:width="true" content="1200">
-   <meta og:image:height="true" content="630">
-   <meta twitter:image="true" content="https://ise.web.app/cover/1.png">
-   <link rel="shortcut icon" type="image/x-icon" href="https://lcup.web.app/img/logo.png">
-   <link rel="stylesheet" href="https://ise.web.app/load.css">
+<title>La consulation</title>
+<meta name="description" content="Map">
+<meta name="keywords" content="apple, fruit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta og:image="true" content="https://ise.web.app/cover/1.png">
+<meta image="true" content="https://ise.web.app/cover/1.png">
+<meta og:image:width="true" content="1200">
+<meta og:image:height="true" content="630">
+<meta twitter:image="true" content="https://ise.web.app/cover/1.png">
+<link rel="shortcut icon" type="image/x-icon" href="https://lcup.web.app/img/logo.png">
+<link rel="stylesheet" href="https://ise.web.app/load.css">
 </head>
 <setup>
 set.title('Map');
@@ -19,8 +19,44 @@ set.icon('https://lcup.web.app/img/logo.png');
 <body no-p no-m>
 
 <style>
-* {--matte2:#202331;--blue2:hsl(229, 38%, 38%);
-animation: fadeIn 0.2s forwards;
+* {--matte2:#202331;--blue2:#383c86;
+animation: fadeIn 0.3s forwards;
+}
+
+*:not([hide]) {
+animation: fadeIn 0.3s forwards;
+}
+[hide]{  
+animation: hidng 0.3s forwards;
+visibility: hidden; 
+width: 0; 
+height: 0; 
+opacity: 0; 
+position: fixed; 
+top: 0; 
+z-index: -2; 
+}
+
+@keyframes hidng {
+from { 
+visibility: visible; 
+width: auto; 
+height: auto; 
+opacity: 1; 
+}
+to {
+visibility: hidden; 
+width: 0; 
+height: 0; 
+opacity: 0; 
+}
+}
+
+
+[fadein]{
+animation: fadeIn 1s forwards;
+}[out]{
+animation: fadeOut 0.3s forwards;
 }
 
 @keyframes fadeIn {
@@ -31,6 +67,16 @@ to { opacity: auto; }
 @keyframes fadeOut {
 from { opacity: auto; }
 to { opacity: 0; }
+}
+
+nav[ab][top] {
+flex-flow: row;
+top: 0;
+left: 0;
+right: 0;
+bottom: unset;
+
+position: absolute;
 }
 
 path {fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
@@ -70,51 +116,79 @@ input[side] {
 transform-origin: center;
 transform: rotate(90deg) translateY(70px);
 }
-
+[tr]{ background-color: transparent;}
 [mw] {max-width: max-content; width: max-content;  padding: 1em;}
 [left][ma]{margin: 0; padding:0.5em 0.5em 0.5em 1em; left: 0px;  }
 
 [bt]{border-top: var(--black2) solid 1px;}
 [br]{border-right: var(--black2) solid 1px; }
 [bb]{border-bottom: var(--black2) solid 1px;}
-
+screen[half] {max-width: 45em; max-height: 50vh; height: 50vh; top: unset; bottom: 0;}
 img {outline: none; border: none; outline: none;}
+hr {
+width: 3em; height: 0.1in;
+}
 
 </style> 
-<bg bbg></bg> 
-
-<screen center id="isc" hide  >
-<span scroll>
-<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
-
-<p id="pd" ></p>
-
-</span>
-
-<nav layer="3" no-m item>
-<a mbg2 mw onmousedown="hide('#isc');show('#im')">
-<i class="fa-solid fa-close" m=""></i>
-</a>
-</nav>
+<bg lbg></bg> 
 
 
-</screen>
 <screen id="im" big-ml big-mb center layer="1">
+<nav top no-m layer="3">
+<span item item-left="">
+<img style="max-width: 0.7in;max-height: 0.7in;" no-m no-p
+src="https://lcup.web.app/img/logo.png">
+<p unbound="" no-m no-p mid>Lcup</p>
 
-<nav layer="3" no-m item>
-<span item-left>
-<p id="pn"></p>
 </span>
-
-<span item-right>
+<span item-right="">
+<a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
+<i class="fa-solid fa-search" m=""></i>
+</a>
 <a mbg2 mw onmousedown="rstT()">
 <i class="fa-solid fa-refresh" m=""></i>
 </a>
-<a mbg2 mw hide onmousedown="show('#isc');hide('#im')">
-<i class="fa-solid fa-info" m=""></i>
-</a>
+</span>
+
+</nav>
+<nav layer="2" no-m item>
+<span item>
+<p id="pn"></p>
 </span>
 </nav>
+<screen center mid-mx tbdr="25"
+id="scl" half bbg hide layer="2">
+<nav ab no-m no-p top layer="3">
+<a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); ">
+<hr m no-m mbg small-px bdr="25">
+</a>
+</nav>
+<textarea mbg2  oninput="srt(this.value)" placeholder="Search"></textarea>
+<span scroll="">
+
+<p id="sro"> </p>
+</span>
+</screen>
+
+<screen center mid-mx tbdr="25"
+id="isc" half bbg hide layer="2">
+
+<nav ab no-m no-p top layer="3">
+<a tr no-m no-p mw onmousedown="dnh('#isc');">
+<hr m no-m mbg small-px bdr="25">
+</a>
+</nav>
+
+<div fadein big-pt scroll>
+<span center>
+<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
+
+<p id="pd"></p>
+</span>
+</div>
+
+
+</screen>
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -123,6 +197,8 @@ viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
 </screen>
+
+
 
 </body>
 

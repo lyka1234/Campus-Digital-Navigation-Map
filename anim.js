@@ -8,6 +8,14 @@ const svg = document.querySelector('svg');
 
 let zom = 1, trX = 0, trY = 0;
 
+
+const dnh = n => {
+document.querySelector(n).setAttribute('out','');
+setTimeout(() => {
+hide(n);
+document.querySelector(n).removeAttribute('out');
+}, 550);
+}
 const ani = () => {
 gsap.to(svg, {
 scale: zom,
@@ -57,13 +65,14 @@ zom = 1;
 ani(); 
 
 setTimeout(() => {
-((p.getAttribute('images') || 
-p.getAttribute('info') !=='') && (hide('#im'), show('#isc')));
+((p.getAttribute('images') !== '' && p.getAttribute('images'))
+|| (p.getAttribute('info') !== '' && p.getAttribute('info')))
+? show('#isc') : dnh('#isc');
 
 pnEl.innerText = p.getAttribute('name'),
 pdEl.innerText = p.getAttribute('info'),
 (mgEl.src= p.getAttribute('images'))
-(p.getAttribute('images') && show('#mg')) || hide('#mg');
+p.getAttribute('images') ? show('#mg') : hide('#mg');
 
 }, 800);
 });
