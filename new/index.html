@@ -10,7 +10,7 @@ ui();
 <body>
 <screen layer="11" center>
 <textarea bol2 m id="ni" placeholder="Name"></textarea>
-<textarea bol2 m id="ii" placeholder="Info"></textarea>
+<textarea bol2 m id="ii" mid placeholder="Info"></textarea>
 <textarea bol2 m id="fi" placeholder="Color"></textarea>
 <textarea bol2 m id="img" placeholder="Image Link"></textarea>
 <textarea bol2 m id="di" mid placeholder="Map Code"></textarea>
@@ -43,7 +43,7 @@ const d = dom('#di').value || '';
 const content = `l.p({
 "${name}": {
 name: "${name}",
-info: "${info}",
+info: \`${info}\`,
 fill: "${fill}",
 images: "${img}",
 d: \`${d}\`
