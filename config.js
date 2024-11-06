@@ -10,6 +10,7 @@ path.setAttribute("fill", fill);
 path.setAttribute("stroke", 'none');
 path.setAttribute("stroke-width", '0');
 path.setAttribute("name", name || "");
+path.id=name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '');
 path.setAttribute("info", info || "");
 path.setAttribute("images", images || "");
 svg.appendChild(path);
