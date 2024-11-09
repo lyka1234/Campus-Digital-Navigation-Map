@@ -90,7 +90,7 @@ path:hover {opacity: 1; fill: auto; }
 svg:hover path:not(:hover) {opacity: 0.3; }
 path:not(:hover) {display: block; }
 
-svg{min-width: 30em; scale:1;}
+svg{max-width: 30em; min-width: 30em; scale:1;}
 
 input[type="range"] {
 -webkit-appearance: none;
@@ -132,36 +132,11 @@ img {outline: none; border: none; outline: none;}
 hr {
 width: 3em; height: 0.1in;
 }
-
+[pin="true"] {
+    fill: #383c86;
+}
 </style> 
 <bg lbg></bg> 
-
-
-<screen id="im" big-ml big-mb center layer="1">
-<nav top no-m layer="3">
-<span item item-left="">
-<i class="fa-solid fa-location-pin" no-m no-p draggable="true" ondragstart="drag(event)" 
-draggable="true"id='pin' big style=" cursor: grab; "></i>
-
-<p unbound="" no- no-p mid>CDNM</p>
-
-</span>
-
-<span item-right="">
-<a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
-<i class="fa-solid fa-search" m=""></i>
-</a>
-<a mbg2 mw onmousedown="rstT()">
-<i class="fa-solid fa-refresh" m=""></i>
-</a>
-</span>
-
-</nav>
-<nav layer="2" no-m item>
-<span item>
-<p id="pn"></p>
-</span>
-</nav>
 <screen center tbdr="25"
 id="scl" half bbg hide layer="2">
 <nav ab no-m no-p top layer="3">
@@ -178,22 +153,52 @@ id="scl" half bbg hide layer="2">
 id="isc" half bbg hide layer="2">
 
 <nav ab no-m no-p top layer="3">
-<a tr no-m no-p mw onmousedown="dnh('#isc');">
+<a tr no-m no-p mw  onmousedown="dnh('#isc');">
 <hr m no-m mbg small-px bdr="25">
 </a>
 </nav>
 
 
 <div fadein big-pt scroll>
-<span center>
-<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
-
+<span row big-mb>
 <p id="pd"></p>
-</span>
+<span item>
+<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
+<img cover bbg hide id="mg2" src="https://lcup.web.app/img/logo.png" bdr="15">
+
+<img cover bbg hide id="mg3" src="https://lcup.web.app/img/logo.png" bdr="15">
+
+</span></span>
 </div>
 
 
 </screen>
+
+<cont style="" no-p no-m id="im" center layer="1">
+<nav top no-m layer="3">
+<span item item-left="">
+<p unbound="" no-m  no-p mid>CDNM</p>
+
+</span> 
+<i style="left:25vw;" class="fa-solid fa-location-pin" id="pin" big layer="2"></i>
+<i g style="left:20vw;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
+<span item-right="">
+<a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
+<i class="fa-solid fa-search" m=""></i>
+</a>
+<a mbg2 mw onmousedown="rstT()">
+<i class="fa-solid fa-refresh" m=""></i>
+</a>
+</span>
+
+</nav>
+<nav layer="2" no-m item>
+<span item>
+<p id="pn"></p>
+</span>
+</nav>
+
+
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -201,49 +206,11 @@ width="100%"
 viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
-</screen>
-
+</cont>
 
 </body>
-
-
-<script>
-function allowDrop(ev) {
-ev.preventDefault();
-}
-
-function drag(ev) {
-ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-ev.preventDefault();
-
-var data = ev.dataTransfer.getData("text");
-var pin = document.getElementById(data);
-
-var svgRect = document.getElementById('map').getBoundingClientRect();
-
-var mouseX = ev.clientX - svgRect.left / ( svgRect.left /1.2);
-var mouseY = ev.clientY - (svgRect.top * 1.2);
-
-pin.style.position = 'absolute';
-pin.style.left = mouseX + 'px';
-pin.style.top = mouseY + 'px'; 
-
-svgRect.appendChild(pin);
-}
-
-window.onload = () => {
-document.querySelectorAll('path').forEach(path => {
-path.addEventListener('dragover', allowDrop);
-path.addEventListener('drop', drop);
-});
-};
-</script>
-
-
-
+  
+  
 <script src="config.js"></script>
 
 <script src="map/etc.js"></script>

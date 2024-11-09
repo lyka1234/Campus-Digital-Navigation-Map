@@ -3,7 +3,7 @@ const l = () => {};
 l.p = (config) => {
 const svg = document.getElementById('map');
 for (const key in config) {
-const { d, fill, info, name, images } = config[key];
+const { d, fill, info, name, pin, images,images2,images3 } = config[key];
 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 path.setAttribute("d", d);
 path.setAttribute("fill", fill);
@@ -12,7 +12,11 @@ path.setAttribute("stroke-width", '0');
 path.setAttribute("name", name || "");
 path.id=name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '');
 path.setAttribute("info", info || "");
+path.setAttribute("pin", pin || false);
 path.setAttribute("images", images || "");
+path.setAttribute("images2", images2 || "");
+
+path.setAttribute("images3", images3 || "");
 svg.appendChild(path);
 } 
 };
@@ -59,6 +63,12 @@ pnEl.innerText = r.name,
 pdEl.innerText = r.info,
 mgEl.src = r.images || '',
 r.images ? show('#mg') : hide('#mg'),
+
+mg2El.src = r.images2 || '',
+r.images2 ? show('#mg2') : hide('#mg2'),
+
+mg3El.src = r.images3 || '',
+r.images3 ? show('#mg3') : hide('#mg3'),
 (r.info || r.images) ? show('#isc') : hide('#isc')
 );
 } else {
