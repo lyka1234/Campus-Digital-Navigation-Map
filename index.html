@@ -137,6 +137,15 @@ width: 3em; height: 0.1in;
 [pin="true"] {
     fill: #383c86;
 }
+
+nav[top]  {
+top: 0;
+z-index: 4;
+}
+nav  {
+bottom: 0;
+z-index: 4 !important;
+}
 </style> 
 <bg lbg></bg> 
 <screen center tbdr="25"
@@ -175,11 +184,13 @@ id="isc" half bbg hide layer="2">
 
 
 </screen>
-<nav top layer>
-<p unbound="" no-m  no-p mid>CDNM</p>
+<nav top layer="3">
+<p unbound="" bold no-m  no-p mid>CDNM</p>
 
-<i style="left:1em;" class="fa-solid fa-location-pin" id="pin" big layer="2"></i>
-<i g style="left:3em;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
+<p id="pn" item-right></p>
+
+<i style="left:3em;" class="fa-solid fa-location-pin" id="pin" big layer="2"></i>
+<i g style="left:4em;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
 </nav>
 
 <nav no-m layer="3" bbg>
@@ -192,13 +203,7 @@ id="isc" half bbg hide layer="2">
 </a>
 
 </nav>
-<cont style="" no-p no-m id="im" center layer="1">
-
-<nav layer="2" no-m item>
-<span item>
-<p id="pn"></p>
-</span>
-</nav>
+<screen style="" no-p no-m id="im" center layer="0">
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -206,7 +211,7 @@ width="100%"
 viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
-</cont>
+</screen>
 
 </body>
   
