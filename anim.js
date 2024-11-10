@@ -95,37 +95,46 @@ if (!e.target.closest('path')) {
 rstT();
 }
 });
-
-const mov = (s) => {
+const mov=(s)=>{
 const elems = document.querySelectorAll(s);
 elems.forEach((e) => {
 let ox, oy, m = false;
 e.style.position = 'absolute';
 
-e.addEventListener('mousedown', (ev) => {
-ox = ev.clientX - e.getBoundingClientRect().left;
-oy = ev.clientY - e.getBoundingClientRect().top;
+const _sMov = (ev) => {
+const event = ev.touches ? ev.touches[0] : ev;
+ox = event.clientX - e.getBoundingClientRect().left;
+oy = event.clientY - e.getBoundingClientRect().top;
 m = true;
-});
+};
 
-document.addEventListener('mousemove', (ev) => {
+const movE = (ev) => {
 if (m) {
-const nl = ev.clientX - ox;
-const nt = ev.clientY - oy;
+const event = ev.touches ? ev.touches[0] : ev;
+const nl = event.clientX - ox;
+const nt = event.clientY - oy;
 e.style.left = `${nl}px`;
 e.style.top = `${nt}px`;
 hnp();
 }
-});
+};
 
-document.addEventListener('mouseup', () => {
+const stopMove = () => {
 m = false;
 hnp();
-});
+};
+
+e.addEventListener('mousedown', _sMov);
+e.addEventListener('touchstart', _sMov, { passive: true });
+document.addEventListener('mousemove', movE);
+document.addEventListener('touchmove', movE, { passive: true });
+document.addEventListener('mouseup', stopMove);
+document.addEventListener('touchend', stopMove);
 });
 };
 
-function hnp() {
+
+const hnp=()=>{
 const p1 = document.getElementById('pin');
 const p2 = document.getElementById('pin2');
 const svg = document.querySelector('svg');
@@ -157,10 +166,11 @@ if (cp) {
 cp.setAttribute('stroke', '#191920');
 cp.setAttribute('stroke-width', '1');
 dD(cPin, cp, md);
-drawLine(cPin, cp);
+_dLn(cPin, cp);
 }
 }
-const cd = (p1,p2)=>{
+
+const cd = (p1, p2) => {
 const x1 = p1.offsetLeft + p1.offsetWidth / 2; 
 const y1 = p1.offsetTop + p1.offsetHeight / 2;
 const x2 = p2.offsetLeft + p2.offsetWidth / 2; 
@@ -169,43 +179,43 @@ const y2 = p2.offsetTop + p2.offsetHeight / 2;
 const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 return distance;
 }
-function dD(p, p2) {
-const dV = document.getElementById('distanceDisplay');
+
+const dD=(p, p2)=> {
+const dV = document.getElementById('dD');
 if (!dV) {
 const _hso = document.createElement('_hso');
 _hso.id = 'mI';
 _hso.style.position = 'absolute';
-_hso.style.color = 'white';
-_hso.style.fontSize = '16px';
-_hso.at('bbg')
+
+_hso.setAttribute('bbg','');
 _hso.style.padding = '5px';
 document.body.appendChild(_hso);
 }
 
 const pr = p.getBoundingClientRect();
 const pr2 = p2.getBoundingClientRect();
-const cx = pr2.left + pr2.width / 2;
-const cy = pr2.top + pr2.height / 1.2;
+const cx = pr2.left + pr2.width / 1;
+const cy = pr2.top + pr2.height / 1;
 
-const cx2 = pr.left + p.offsetWidth / 1.2;
+const cx2 = pr.left + p.offsetWidth / 1;
 const cy2 = pr.top + p.offsetHeight / 1;
 
 const dv = document.getElementById('mI');
 
-dv.innerText = `${Math.round(pxToMeter(cx+cx2+cy+cy2*0.23 / 2.082))}m | ${p2.getAttribute('name')}`;
-dv.setAttribute('layer', '2');
+dv.innerText = `${Math.round(pxToMeter((cx + cx2 + cy + cy2 * 0.23) / 2.082 * 1.391)* 2.873 )}m | ${p2.getAttribute('name')}`;
+dv.setAttribute('layer', '1');
 dv.style.left = `${Math.min(cx, cx2)}px`;
 dv.style.top = `${Math.min(cy, cy2)}px`;
 }
 
-function drawLine(p1, p2) {
+const _dLn=(p1, p2)=> {
 const svg = document.querySelector('svg');
 const pr1 = p1.getBoundingClientRect();
 const pr2 = p2.getBoundingClientRect();
 
-const x1 = pr1.left + pr1.width /1;
+const x1 = pr1.left + pr1.width / 1.07294;
 const y1 = pr1.top + pr1.height / 1;
-const x2 = pr2.left + pr2.width / 1;
+const x2 = pr2.left + pr2.width / 1.07294;
 const y2 = pr2.top + pr2.height / 1;
 
 const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -222,7 +232,7 @@ line.remove();
 }, 2000);
 }
 
-function pxToMeter(px) {
+const pxToMeter=(px)=> {
 const conversionFactor = 0.01;
 return px * conversionFactor;
 }
