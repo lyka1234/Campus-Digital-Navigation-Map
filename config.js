@@ -44,7 +44,9 @@ e.getAttribute('info').toLowerCase().includes(searchTerm)
 return filtered.length ? filtered.map(e => ({
 name: e.getAttribute('name'),
 info: e.getAttribute('info'),
-images: e.getAttribute('images')
+images: e.getAttribute('images'),
+images2: e.getAttribute('images2'),
+images3: e.getAttribute('images3')
 })) : 'Keep Searching';
 };
 
@@ -58,7 +60,7 @@ let fragment = document.createDocumentFragment();
 
 results.forEach(r => {
 let el;
-if (r.info || r.images) {
+if (r.info || r.images || r.images2 || r.images3) {
 el = document.createElement('a');
 el.innerText = r.name;
 el.href = '#';
@@ -85,8 +87,7 @@ _tPE.setAttribute('a','')
 const rect = _tPE.getBoundingClientRect();
 const cY = rect.top;
 
-movY(cY + 180);
-zom=0.79
+movY(cY + (cY/2));
 ani(); 
 targetPath.click();
 } 

@@ -70,20 +70,23 @@ ani();
 
 setTimeout(() => {
 ((p.getAttribute('images') !== '' && p.getAttribute('images'))
+|| (p.getAttribute('images2') !== '' && p.getAttribute('images2'))
+|| (p.getAttribute('images3') !== '' && p.getAttribute('images3'))
 || (p.getAttribute('info') !== '' && p.getAttribute('info')))
 ? show('#isc') : dnh('#isc');
 
 pnEl.innerText = p.getAttribute('name'),
 pdEl.innerText = p.getAttribute('info'),
-(mgEl.src= p.getAttribute('images'))
-p.getAttribute('images') ? show('#mg') : hide('#mg');
+
+(mg3El.src= p.getAttribute('images3'))
+p.getAttribute('images3') ? show('#mg3') : hide('#mg3');
 
 
 (mg2El.src= p.getAttribute('images2'))
 p.getAttribute('images2') ? show('#mg2') : hide('#mg2');
 
-(mg3El.src= p.getAttribute('images3'))
-p.getAttribute('images3') ? show('#mg3') : hide('#mg3');
+(mgEl.src= p.getAttribute('images'))
+p.getAttribute('images') ? show('#mg') : hide('#mg');
 
 }, 800);
 });
