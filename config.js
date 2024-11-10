@@ -1,5 +1,12 @@
 const l = () => {};
 
+const rdL=()=>{
+const elsO = document.querySelectorAll('[o]');
+elsO.forEach(el => el.removeAttribute('o'));
+const elsA = document.querySelectorAll('[a]');
+elsA.forEach(el => el.removeAttribute('a'));
+
+}
 l.p = (config) => {
 const svg = document.getElementById('map');
 for (const key in config) {
@@ -58,19 +65,33 @@ el.href = '#';
 el.setAttribute('left', '');
 el.setAttribute('bdr', '25');
 el.setAttribute('mbg2', '');
-el.onclick = () => (
-pnEl.innerText = r.name,
-pdEl.innerText = r.info,
-mgEl.src = r.images || '',
-r.images ? show('#mg') : hide('#mg'),
+el.onclick = () => {
+pnEl.innerText = r.name;
+pdEl.innerText = r.info;
+mgEl.src = r.images || '';
+r.images ? show('#mg') : hide('#mg');
+mg2El.src = r.images2 || '';
+r.images2 ? show('#mg2') : hide('#mg2');
+mg3El.src = r.images3 || '';
+r.images3 ? show('#mg3') : hide('#mg3');
+(r.info || r.images || r.images2 || r.images3) ? show('#isc') : hide('#isc');
+const _vimap = document.getElementById('map');
 
-mg2El.src = r.images2 || '',
-r.images2 ? show('#mg2') : hide('#mg2'),
+const _tPE = document.getElementById(r.name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, ''));
+if (_tPE) {
+_vimap.setAttribute('o','');
 
-mg3El.src = r.images3 || '',
-r.images3 ? show('#mg3') : hide('#mg3'),
-(r.info || r.images) ? show('#isc') : hide('#isc')
-);
+_tPE.setAttribute('a','')
+const rect = _tPE.getBoundingClientRect();
+const cY = rect.top;
+
+movY(cY + 180);
+zom=0.79
+ani(); 
+targetPath.click();
+} 
+};
+
 } else {
 el = document.createElement('p');
 el.innerText = r.name;

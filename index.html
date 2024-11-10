@@ -79,15 +79,16 @@ bottom: unset;
 position: absolute;
 }
 
-path {z-index: 1; fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
+path,[a] {z-index: 1; fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
 path>i {
 z-index: 3;
 position: absolute;
 color: #383c86;
 }
-path:hover {opacity: 1; fill: auto; }
+path:hover,path[a] {opacity: 1; fill: auto; }
 
-svg:hover path:not(:hover) {opacity: 0.3; }
+
+svg:hover path:not(:hover), [o] path:not([a]) {opacity: 0.3; }
 path:not(:hover) {display: block; }
 
 svg{max-width: 30em; min-width: 30em; scale:1;}
@@ -127,6 +128,7 @@ transform: rotate(90deg) translateY(70px);
 [bt]{border-top: var(--black2) solid 1px;}
 [br]{border-right: var(--black2) solid 1px; }
 [bb]{border-bottom: var(--black2) solid 1px;}
+screen[half][top] { max-height: 50vh; width: 100% !important; height: 50vh; right:0; left: 0 !important; top: 0; bottom: unset;}
 screen[half] {max-width: 45em; max-height: 50vh; width: 100% !important; height: 50vh; right:0; left: unset !important; top: unset; bottom: 0;}
 img {outline: none; border: none; outline: none;}
 hr {
@@ -140,7 +142,7 @@ width: 3em; height: 0.1in;
 <screen center tbdr="25"
 id="scl" half bbg hide layer="2">
 <nav ab no-m no-p top layer="3">
-<a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); ">
+<a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); rdL(); rstT()">
 <hr m no-m mbg small-px bdr="25">
 </a>
 </nav>
@@ -153,7 +155,7 @@ id="scl" half bbg hide layer="2">
 id="isc" half bbg hide layer="2">
 
 <nav ab no-m no-p top layer="3">
-<a tr no-m no-p mw  onmousedown="dnh('#isc');">
+<a tr no-m no-p mw  onmousedown="dnh('#isc'); rdL(); rstT()">
 <hr m no-m mbg small-px bdr="25">
 </a>
 </nav>
@@ -176,19 +178,21 @@ id="isc" half bbg hide layer="2">
 
 <cont style="" no-p no-m id="im" center layer="1">
 <nav top no-m layer="3">
-<span item item-left="">
+<span item-left="">
 <p unbound="" no-m  no-p mid>CDNM</p>
 
 </span> 
 <i style="left:4em;" class="fa-solid fa-location-pin" id="pin" big layer="2"></i>
 <i g style="left:6em;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
 <span item-right="">
+<span row="">
 <a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
 <i class="fa-solid fa-search" m=""></i>
 </a>
 <a mbg2 mw onmousedown="rstT()">
 <i class="fa-solid fa-refresh" m=""></i>
 </a>
+</span>
 </span>
 
 </nav>
@@ -197,8 +201,6 @@ id="isc" half bbg hide layer="2">
 <p id="pn"></p>
 </span>
 </nav>
-
-
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

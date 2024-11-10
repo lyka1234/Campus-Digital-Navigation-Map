@@ -66,7 +66,6 @@ const cY = rect.top + rect.height / 2;
 
 movX(cX);
 movY(cY);
-
 ani(); 
 
 setTimeout(() => {
@@ -95,6 +94,9 @@ if (!e.target.closest('path')) {
 rstT();
 }
 });
+
+
+
 const mov=(s)=>{
 const elems = document.querySelectorAll(s);
 elems.forEach((e) => {
@@ -119,7 +121,7 @@ hnp();
 }
 };
 
-const stopMove = () => {
+const _sMv = () => {
 m = false;
 hnp();
 };
@@ -128,8 +130,8 @@ e.addEventListener('mousedown', _sMov);
 e.addEventListener('touchstart', _sMov, { passive: true });
 document.addEventListener('mousemove', movE);
 document.addEventListener('touchmove', movE, { passive: true });
-document.addEventListener('mouseup', stopMove);
-document.addEventListener('touchend', stopMove);
+document.addEventListener('mouseup', _sMv);
+document.addEventListener('touchend', _sMv);
 });
 };
 
