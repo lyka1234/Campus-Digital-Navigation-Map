@@ -1,6 +1,9 @@
 l.p({
 "Barceló Café Malolos": {
 name: "Barceló Café Malolos",
+
+images: "map/agostino.png",
+images2: "map/agostino2.png",
 info: `Here you can also find 
 Agostino which contains CITHM Laboratory.`,
 fill: "#B4B4B4",

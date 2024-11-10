@@ -1,6 +1,7 @@
 l.p({
 "": {
 name: "MR Building",
+images:"map/mr.png",
 info: `
 Mo. Rita Barcelo Building
 
@@ -13,7 +14,7 @@ Mo. Rita Barcelo Building
 - Student Welfare Services Extension (BED)
 - Student Development Services (College)
 - Student Welfare Services (College & GS)
-- Micro Teaching Laboratory
+- Micro Teaching Laboratory 
 - Radiologic Technology Laboratory
 
 2nd Floor:

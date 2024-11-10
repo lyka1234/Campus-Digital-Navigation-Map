@@ -1,6 +1,8 @@
 l.p({
 "Our Lady of Grace Building": {
 name: "Our Lady of Grace Building",
+images:"map/grace.png",
+images2:"map/grace2.png",
 info: `This contains
  - 1st Floor - Health Services Unit
       - 2nd Floor - Culture and Arts`,

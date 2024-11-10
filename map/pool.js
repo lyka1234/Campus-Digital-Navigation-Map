@@ -1,9 +1,11 @@
 l.p({
 "Pool": {
-name: "Pool",
+name: "Adeodatus Pool",
 info: "Adeodatus Mini Olympic Swimming Pool",
 fill: "#ABD9FD",
 images: "map/pool.png",
+images2: "map/pool2.png",
+images3: "map/pool3.png",
 d: `
 M520.980469,479.069336 
 C518.809021,469.136719 516.739868,459.601227 514.486023,450.109650 

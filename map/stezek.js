@@ -1,6 +1,8 @@
 l.p({
 "St. Ezekiel Moreno Building": {
 name: "St. Ezekiel Moreno Building",
+images: "map/ha.png",
+images2: "map/ha2.png",
 info: `This contains
 Human Anatomy Laboratory`,
 fill: "#B4B4B4",

@@ -1,6 +1,10 @@
 l.p({
 "Venerable Mo. Consuelo Academic Building": {
 name: "Venerable Mo. Consuelo Academic Building",
+
+images: "map/psylab.png",
+images2: "",
+images3: "",
 info: `This contains
   - 1st Floor - Graduate Studies Faculty Room
       - 1st Floor - Office of the Vice President for Graduate Studies

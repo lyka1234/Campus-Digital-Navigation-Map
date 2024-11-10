@@ -1,6 +1,7 @@
 l.p({
 "St. Padre Pio Building": {
 name: "St. Padre Pio Building",
+images:"map/padre.png",
 info: `This contains 
 - St. Padre Pio Canteen`,
 fill: "#B4B4B4",
