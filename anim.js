@@ -168,7 +168,7 @@ cPin = cPinToP;
 ps.forEach(p => p.removeAttribute('stroke'));
 
 if (cp) {
-cp.setAttribute('stroke', '#191920');
+cp.setAttribute('stroke', '#88888839');
 cp.setAttribute('stroke-width', '1');
 dD(cPin, cp, md);
 _dLn(cPin, cp);
@@ -228,7 +228,7 @@ line.setAttribute('x1', x1);
 line.setAttribute('y1', y1);
 line.setAttribute('x2', x2);
 line.setAttribute('y2', y2);
-line.setAttribute('stroke', '#303040');
+line.setAttribute('stroke', '#88888839');
 line.setAttribute('stroke-width', '1');
 svg.appendChild(line);
 

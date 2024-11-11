@@ -71,14 +71,16 @@ from { opacity: auto; }
 to { opacity: 0; }
 }
 
+nav {bottom:0 !important; position: fixed;}
+nav[top] {bottom:unset !important;top:0 !important; position: fixed;}
 nav[ab][top] {
 flex-flow: row;
 top: 0;
 left: 0;
 right: 0;
-bottom: unset;
+bottom: unset !important;
 
-position: absolute;
+position: absolute  !important;
 }
 
 path,[a] {z-index: 1; fill: auto; opacity: 1;transition: fill 0.3s, opacity 0.3s; }
@@ -139,7 +141,9 @@ width: 3em; height: 0.1in;
 [pin="true"] {
 fill: #383c86;
 }
-
+[layer="3"] {
+z-index: 3;
+}
 nav[top]  {
 top: 0;
 z-index: 4;
@@ -151,7 +155,7 @@ z-index: 4 !important;
 </style> 
 <bg lbg></bg> 
 <screen center tbdr="25"
-id="scl" half bbg hide layer="2">
+id="scl" half bbg hide layer="3">
 <nav ab no-m no-p top layer="3">
 <a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); rdL(); rstT()">
 <hr m no-m mbg small-px bdr="25">
