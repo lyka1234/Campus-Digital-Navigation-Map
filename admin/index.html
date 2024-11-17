@@ -30,9 +30,12 @@ max-width: 20em !important;
 }
 </style>
 <body>
-
+<nav>
+<p id="feed"></p>
+</nav>
 <cont bbg m center>
 <p m unbound>Admin</p>
+
 <span row="">
 <p m no-m no-p unbound item-left>Type</p>
 <select bol2 id="type" placeholder="Please Put*">
@@ -102,8 +105,11 @@ type: type,
 })
 })
 .then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
+.then(data => dom('#feed').text = 'Sent')
+.catch(error => dom('#feed').text = error);
+setTimeout(() => {
+dom('#feed').text = ''
+}, 1200);
 }
 
 window.onload = function() {
