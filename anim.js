@@ -12,11 +12,13 @@ const svg = document.querySelector('svg');
 
 let zom = 1, trX = -18.6, trY = 0;
 
-
+dhid=(saa)=>{
+document.querySelector(saa).setAttribute('hide','');
+}
 const dnh = n => {
 document.querySelector(n).setAttribute('out','');
 setTimeout(() => {
-hide(n);
+dhid(n);
 document.querySelector(n).removeAttribute('out');
 }, 550);
 }
@@ -47,56 +49,6 @@ trY = 0;
 ani();
 };
 rstT();
-
-pth.forEach(p => {
-
-p.addEventListener('mouseenter', () => {
-pnEl.innerText = p.getAttribute('name');
-
-
-ani(); 
-
-});
-
-
-p.addEventListener('click', e => {
-const rect = p.getBoundingClientRect();
-const cX = rect.left + rect.width / 2;
-const cY = rect.top + rect.height / 2;
-
-movX(cX);
-movY(cY);
-ani(); 
-
-setTimeout(() => {
-((p.getAttribute('images') !== '' && p.getAttribute('images'))
-|| (p.getAttribute('images2') !== '' && p.getAttribute('images2'))
-|| (p.getAttribute('images3') !== '' && p.getAttribute('images3'))
-|| (p.getAttribute('info') !== '' && p.getAttribute('info')))
-? show('#isc') : dnh('#isc');
-
-pnEl.innerText = p.getAttribute('name'),
-pdEl.innerText = p.getAttribute('info'),
-
-(mg3El.src= p.getAttribute('images3'))
-p.getAttribute('images3') ? show('#mg3') : hide('#mg3');
-
-
-(mg2El.src= p.getAttribute('images2'))
-p.getAttribute('images2') ? show('#mg2') : hide('#mg2');
-
-(mgEl.src= p.getAttribute('images'))
-p.getAttribute('images') ? show('#mg') : hide('#mg');
-
-}, 800);
-});
-});
-
-svg.addEventListener('mouseleave', e => {
-if (!e.target.closest('path')) {
-rstT();
-}
-});
 
 
 
@@ -137,7 +89,6 @@ document.addEventListener('mouseup', _sMv);
 document.addEventListener('touchend', _sMv);
 });
 };
-
 
 const hnp=()=>{
 const p1 = document.getElementById('pin');
@@ -242,8 +193,127 @@ const conversionFactor = 0.01;
 return px * conversionFactor;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-mov('#pin');
-mov('#pin2');
-hnp();
+
+const _0x3b1e = ['\x68\x74\x74\x70\x73\x3A\x2F\x2F\x78\x38\x6B\x69\x2D\x6C\x65\x74\x6C\x2D\x74\x77\x6D\x74\x2E\x6E\x37\x2E\x78\x61\x6E\x6F\x2E\x69\x6F\x2F\x61\x70\x69\x3A\x66\x6A\x4D\x46\x61\x69\x54\x42\x2F\x6D\x61\x70'];
+const _url = _0x3b1e[0];
+lmD = async () => {
+try {
+const response = await fetch(_url, {
+method: 'GET',
+headers: {
+'Content-Type': 'application/json',
+},
 });
+
+if (!response.ok) {
+throw new Error(`HTTP error! Status: ${response.status}`);
+}
+
+const data = await response.json();
+console.log(data);
+
+if (!Array.isArray(data)) {
+throw new Error('Invalid data format. Expected an array.');
+}
+
+const svg = document.getElementById('map');
+if (!svg) {
+throw new Error('SVG element with id "map" not found.');
+}
+
+// Process each item in the data array
+data.forEach(item => {
+const { d, fill, info, name, image, image2, image3, type } = item;
+
+// Validate required properties
+if (!d || !fill || !type) {
+console.error('Missing required properties for path creation', item);
+return;
+}
+
+const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+// Add attributes if they exist and are valid
+if (d && d.trim() && d !== 'unknown') path.setAttribute("d", d);
+if (fill && fill.trim() && fill !== 'unknown') path.setAttribute("fill", fill);
+if (name && name.trim() && name !== 'unknown') {
+path.setAttribute("name", name);
+path.id = name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '');
+}
+if (info && info.trim() && info !== 'unknown') path.setAttribute("info", info);
+if (image && image.trim() && image !== 'unknown') path.setAttribute("image", image);
+if (image2 && image2.trim() && image2 !== 'unknown') path.setAttribute("image2", image2);
+if (image3 && image3.trim() && image3 !== 'unknown') path.setAttribute("image3", image3);
+if (type && type.trim() && type !== 'unknown') path.setAttribute("type", type);
+
+path.setAttribute("stroke", 'none');
+path.setAttribute("stroke-width", '0');
+
+svg.appendChild(path);
+});
+
+// Add event listeners to paths
+const paths = svg.querySelectorAll('path');
+paths.forEach(p => {
+p.addEventListener('mouseenter', () => {
+pnEl.innerText = p.getAttribute('name') || 'Unknown';
+ani();
+});
+
+p.addEventListener('click', () => {
+const rect = p.getBoundingClientRect();
+const cX = rect.left + rect.width / 2;
+const cY = rect.top + rect.height / 2;
+
+movX(cX);
+movY(cY);
+ani();
+
+setTimeout(() => {
+const hasImages = (attr) => attr && attr.trim() && attr !== 'unknown';
+
+// Toggle visibility of #isc
+if (
+    hasImages(p.getAttribute('image')) ||
+    hasImages(p.getAttribute('image2')) ||
+    hasImages(p.getAttribute('image3')) ||
+    hasImages(p.getAttribute('info'))
+) {
+    dom('#isc').rem('hide');
+} else {
+    dnh('#isc');
+}
+
+pnEl.innerText = p.getAttribute('name') || '';
+pdEl.innerText = hasImages(p.getAttribute('info')) ? p.getAttribute('info') : '';
+
+// Image 3
+if (hasImages(p.getAttribute('image3'))) {
+    mgEl3.src = p.getAttribute('image3');
+    dom('#mg3').rem('hide');
+} else {
+    dhid('#mg3');
+}
+
+// Image 2
+if (hasImages(p.getAttribute('image2'))) {
+    mgEl2.src = p.getAttribute('image2');
+    dom('#mg2').rem('hide');
+} else {
+    dhid('#mg2');
+}
+
+// Image
+if (hasImages(p.getAttribute('image'))) {
+    mgEl.src = p.getAttribute('image');
+    dom('#mg').rem('hide');
+} else {
+    dhid('#mg');
+}
+}, 800);
+});
+});
+} catch (error) {
+console.error('Error fetching or processing data:', error);
+}
+};

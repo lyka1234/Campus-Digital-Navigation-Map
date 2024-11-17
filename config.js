@@ -28,6 +28,8 @@ svg.appendChild(path);
 } 
 };
 
+
+
 let debounceTimer;
 let debounce = (func, delay) => {
 clearTimeout(debounceTimer);
@@ -70,12 +72,12 @@ el.setAttribute('mbg2', '');
 el.onclick = () => {
 pnEl.innerText = r.name;
 pdEl.innerText = r.info;
-mgEl.src = r.images || '';
-r.images ? show('#mg') : hide('#mg');
-mg2El.src = r.images2 || '';
-r.images2 ? show('#mg2') : hide('#mg2');
-mg3El.src = r.images3 || '';
-r.images3 ? show('#mg3') : hide('#mg3');
+(r.images && r.images!=='')?(mgEl.src = r.images):'';
+(r.images && r.images!=='') ? show('#mg') : hide('#mg');
+(r.images2 && r.images2!=='')?(mgEl2.src = r.images):'';
+(r.images2 && r.images2!=='') ? show('#mg2') : hide('#mg2');
+(r.images3 && r.images3!=='')?(mgEl3.src = r.images):'';
+(r.images3 && r.images3!=='') ? show('#mg3') : hide('#mg3');
 (r.info || r.images || r.images2 || r.images3) ? show('#isc') : hide('#isc');
 const _vimap = document.getElementById('map');
 

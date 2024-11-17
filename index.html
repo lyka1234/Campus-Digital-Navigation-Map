@@ -154,6 +154,13 @@ z-index: 4 !important;
 }
 </style> 
 <bg lbg></bg> 
+<screen id="sloa" lbg layer="4" center>
+<p unbound big>CDNM</p>
+<p unbound mid>Loading Map</p>
+<nav>
+<p unbound>If map is invisible, Please reload It's because of Internet</p>
+</nav>
+</screen>
 <screen center tbdr="25"
 id="scl" half bbg hide layer="3">
 <nav ab no-m no-p top layer="3">
@@ -190,7 +197,7 @@ id="isc" half bbg hide layer="2">
 
 
 </screen>
-<nav top layer="3">
+<nav top id='tn' hide layer="3">
 <p unbound="" bold no-m  no-p mid>CDNM</p>
 
 <p id="pn" item-right></p>
@@ -199,7 +206,7 @@ id="isc" half bbg hide layer="2">
 <i g style="left:4em;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
 </nav>
 
-<nav no-m layer="3" bbg>
+<nav no-m id='bn' hide layer="3" bbg>
 
 <a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
 <i class="fa-solid fa-search" m=""></i>
@@ -222,49 +229,42 @@ viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 </body>
 <script src="config.js"></script>
 
-<script src="map/etc.js"></script>
-<script src="map/motorpool.js"></script>
-<script src="map/cloister.js"></script>
-<script src="map/miniforest.js"></script>
-<script src="map/ourlady_chapel.js"></script>  
-<script src="map/osagym.js"></script>
-<script src="map/fab.js"></script>
-<script src="map/cath.js"></script>
-<script src="map/ven_acadbld.js"></script>
-<script src="map/vmc.js"></script>
-<script src="map/aug_adminbld.js"></script>
-<script src="map/barcie.js"></script>
-<script src="map/stezek.js"></script>
-<script src="map/ostia.js"></script>
-<script src="map/idk2.js"></script>
-<script src="map/idk3.js"></script>
-<script src="map/conbld.js"></script>
-<script src="map/gracebld.js"></script>
-<script src="map/stninobld.js"></script>
-<script src="map/stpadre.js"></script>
-<script src="map/good.js"></script>
-<script src="map/innergarden.js"></script>
-<script src="map/ourlady.js"></script>
-<script src="map/barcelo.js"></script>
-<script src="map/stmonica.js"></script> 
-<script src="map/gratos.js"></script>
-<script src="map/stnino.js"></script>
-<script src="map/mary.js"></script>
-<script src="map/agustino.js"></script>
-<script src="map/kalin.js"></script>
-<script src="map/pool.js"></script>
-<script src="map/cafe.js"></script>
-<script src="map/idk2.js"></script>
-<script src="map/idk.js"></script>
-<script src="map/mr.js"></script>
-<script src="map/fish.js"></script>
-<script src="map/gate1.js"></script>
-<script src="map/gate2.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 
-<script src="anim.js" async></script>
 <script src='https://ise.web.app/load.js'></script>
+
+<script src="anim.js"></script>
+
+<script>const lmP = () => {
+const svg = document.getElementById('map');
+
+if (svg) {
+lmD(); 
+} else {
+console.log('Map not loaded yet. Retrying...');
+setTimeout(lmP, 500); 
+}
+};
+lmP()
+</script>
+<script>
+setTimeout(() => {
+dom('#bn').rem('hide');
+dom('#tn').rem('hide');
+dom('#sloa').at('hide');
+}, 2000);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+mov('#pin');
+mov('#pin2');
+hnp();
+
+});
+
+
+</script>
 <script>
 
 window.addEventListener('touchstart', function(event) {
@@ -287,6 +287,11 @@ event.preventDefault();
 
 document.addEventListener('contextmenu', function(event) {
 event.preventDefault();
+});
+dom('#map').addEventListener('mouseleave', e => {
+if (!e.target.closest('path')) {
+rstT();
+}
 });
 
 </script>
