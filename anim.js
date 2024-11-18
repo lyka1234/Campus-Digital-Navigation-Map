@@ -273,10 +273,10 @@ setTimeout(() => {
 const hasimage = (attr) => attr && attr.trim() && attr !== 'unknown';
 
 if (
+    hasimage(p.getAttribute('info'))||
 hasimage(p.getAttribute('image')) ||
 hasimage(p.getAttribute('image2')) ||
-hasimage(p.getAttribute('image3')) ||
-hasimage(p.getAttribute('info'))
+hasimage(p.getAttribute('image3'))
 ) {
 dom('#isc').rem('hide');
 } else {
