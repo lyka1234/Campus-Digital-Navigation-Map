@@ -8,8 +8,8 @@ elsA.forEach(el => el.removeAttribute('a'));
 }
 let debounceTimer;
 let debounce = (func, delay) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(func, delay);
+clearTimeout(debounceTimer);
+debounceTimer = setTimeout(func, delay);
 };
 
 let isMapLoaded = false;
@@ -27,25 +27,25 @@ resolve();
 let initMapLoad = () => new Promise(waitForMap);
 
 let fnd = v => {
-    let elems = document.querySelectorAll(`path[name], path[info]`);
-    if (!elems.length) return 'No elements found';
-    
-    let searchTerm = v.toLowerCase().replace(/\s+/g, '');
-    let filtered = Array.from(elems).filter(e => {
-        let name = e.getAttribute('name') || '';
-        let info = e.getAttribute('info') || '';
-        return name.toLowerCase().includes(searchTerm) || info.toLowerCase().includes(searchTerm);
-    });
-    
-    return filtered.length
-        ? filtered.map(e => ({
-            name: e.getAttribute('name') || '',
-            info: e.getAttribute('info') || '',
-            image: e.getAttribute('image') || '',
-            image2: e.getAttribute('image2') || '',
-            image3: e.getAttribute('image3') || ''
-        }))
-        : 'Keep Searching';
+let elems = document.querySelectorAll(`path[name], path[info]`);
+if (!elems.length) return 'No elements found';
+
+let searchTerm = v.toLowerCase().replace(/\s+/g, '');
+let filtered = Array.from(elems).filter(e => {
+let name = e.getAttribute('name') || '';
+let info = e.getAttribute('info') || '';
+return name.toLowerCase().includes(searchTerm) || info.toLowerCase().includes(searchTerm);
+});
+
+return filtered.length
+? filtered.map(e => ({
+name: e.getAttribute('name') || '',
+info: e.getAttribute('info') || '',
+image: e.getAttribute('image') || '',
+image2: e.getAttribute('image2') || '',
+image3: e.getAttribute('image3') || ''
+}))
+: 'Keep Searching';
 };
 
 let srt = v => debounce(() => {
@@ -66,11 +66,11 @@ el.setAttribute('mbg2', '');
 el.onclick = () => {
 pnEl.innerText = r.name;
 pdEl.innerText = r.info;
-(r.image && r.image !== '') ? (mgEl.src = r.image) : '';
+(r.image && r.image !== '') ? (dom('#mg').src = r.image) : '';
 (r.image && r.image !== '') ? show('#mg') : hide('#mg');
-(r.image2 && r.image2 !== '') ? (mgEl2.src = r.image2) : '';
+(r.image2 && r.image2 !== '') ? (dom('#mg2').src = r.image2) : '';
 (r.image2 && r.image2 !== '') ? show('#mg2') : hide('#mg2');
-(r.image3 && r.image3 !== '') ? (mgEl3.src = r.image3) : '';
+(r.image3 && r.image3 !== '') ? (dom('#mg3').src = r.image3) : '';
 (r.image3 && r.image3 !== '') ? show('#mg3') : hide('#mg3');
 (r.info || r.image || r.image2 || r.image3) ? show('#isc') : hide('#isc');
 const _vimap = dom('#map');
