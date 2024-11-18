@@ -1,3 +1,5 @@
+
+
 const l = () => {};
 
 const rdL=()=>{
@@ -10,7 +12,7 @@ elsA.forEach(el => el.removeAttribute('a'));
 l.p = (config) => {
 const svg = document.getElementById('map');
 for (const key in config) {
-const { d, fill, info, name, pin, images,images2,images3 } = config[key];
+const { d, fill, info, name, pin, image,image2,image3 } = config[key];
 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 path.setAttribute("d", d);
 path.setAttribute("fill", fill);
@@ -20,10 +22,10 @@ path.setAttribute("name", name || "");
 path.id=name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '');
 path.setAttribute("info", info || "");
 path.setAttribute("pin", pin || false);
-path.setAttribute("images", images || "");
-path.setAttribute("images2", images2 || "");
+path.setAttribute("image", image || "");
+path.setAttribute("image2", image2 || "");
 
-path.setAttribute("images3", images3 || "");
+path.setAttribute("image3", image3 || "");
 svg.appendChild(path);
 } 
 };
@@ -46,9 +48,9 @@ e.getAttribute('info').toLowerCase().includes(searchTerm)
 return filtered.length ? filtered.map(e => ({
 name: e.getAttribute('name'),
 info: e.getAttribute('info'),
-images: e.getAttribute('images'),
-images2: e.getAttribute('images2'),
-images3: e.getAttribute('images3')
+image: e.getAttribute('image'),
+image2: e.getAttribute('image2'),
+image3: e.getAttribute('image3')
 })) : 'Keep Searching';
 };
 
@@ -62,7 +64,7 @@ let fragment = document.createDocumentFragment();
 
 results.forEach(r => {
 let el;
-if (r.info || r.images || r.images2 || r.images3) {
+if (r.info || r.image || r.image2 || r.image3) {
 el = document.createElement('a');
 el.innerText = r.name;
 el.href = '#';
@@ -72,16 +74,16 @@ el.setAttribute('mbg2', '');
 el.onclick = () => {
 pnEl.innerText = r.name;
 pdEl.innerText = r.info;
-(r.images && r.images!=='')?(mgEl.src = r.images):'';
-(r.images && r.images!=='') ? show('#mg') : hide('#mg');
-(r.images2 && r.images2!=='')?(mgEl2.src = r.images):'';
-(r.images2 && r.images2!=='') ? show('#mg2') : hide('#mg2');
-(r.images3 && r.images3!=='')?(mgEl3.src = r.images):'';
-(r.images3 && r.images3!=='') ? show('#mg3') : hide('#mg3');
-(r.info || r.images || r.images2 || r.images3) ? show('#isc') : hide('#isc');
-const _vimap = document.getElementById('map');
+(r.image && r.image!=='')?(mgEl.src = r.image):'';
+(r.image && r.image!=='') ? show('#mg') : hide('#mg');
+(r.image2 && r.image2!=='')?(mgEl2.src = r.image):'';
+(r.image2 && r.image2!=='') ? show('#mg2') : hide('#mg2');
+(r.image3 && r.image3!=='')?(mgEl3.src = r.image):'';
+(r.image3 && r.image3!=='') ? show('#mg3') : hide('#mg3');
+(r.info || r.image || r.image2 || r.image3) ? show('#isc') : hide('#isc');
+const _vimap = dom('#map');
 
-const _tPE = document.getElementById(r.name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, ''));
+const _tPE = dom(`#${r.name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '')}`);
 if (_tPE) {
 _vimap.setAttribute('o','');
 
@@ -100,10 +102,10 @@ el = document.createElement('p');
 el.innerText = r.name;
 el.setAttribute('small-p', '');
 }
-fragment.appendChild(el);
+fragment.put(el);
 });
 
-outputDiv.appendChild(fragment); 
+outputDiv.put(fragment); 
 } else {
 outputDiv.innerText = results;
 }

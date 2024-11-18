@@ -221,11 +221,11 @@ if (!svg) {
 throw new Error('SVG element with id "map" not found.');
 }
 
-// Process each item in the data array
+
 data.forEach(item => {
 const { d, fill, info, name, image, image2, image3, type } = item;
 
-// Validate required properties
+
 if (!d || !fill || !type) {
 console.error('Missing required properties for path creation', item);
 return;
@@ -233,7 +233,7 @@ return;
 
 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
-// Add attributes if they exist and are valid
+
 if (d && d.trim() && d !== 'unknown') path.setAttribute("d", d);
 if (fill && fill.trim() && fill !== 'unknown') path.setAttribute("fill", fill);
 if (name && name.trim() && name !== 'unknown') {
@@ -252,7 +252,7 @@ path.setAttribute("stroke-width", '0');
 svg.appendChild(path);
 });
 
-// Add event listeners to paths
+
 const paths = svg.querySelectorAll('path');
 paths.forEach(p => {
 p.addEventListener('mouseenter', () => {
@@ -270,45 +270,41 @@ movY(cY);
 ani();
 
 setTimeout(() => {
-const hasImages = (attr) => attr && attr.trim() && attr !== 'unknown';
+const hasimage = (attr) => attr && attr.trim() && attr !== 'unknown';
 
-// Toggle visibility of #isc
 if (
-    hasImages(p.getAttribute('image')) ||
-    hasImages(p.getAttribute('image2')) ||
-    hasImages(p.getAttribute('image3')) ||
-    hasImages(p.getAttribute('info'))
+hasimage(p.getAttribute('image')) ||
+hasimage(p.getAttribute('image2')) ||
+hasimage(p.getAttribute('image3')) ||
+hasimage(p.getAttribute('info'))
 ) {
-    dom('#isc').rem('hide');
+dom('#isc').rem('hide');
 } else {
-    dnh('#isc');
+dnh('#isc');
 }
 
 pnEl.innerText = p.getAttribute('name') || '';
-pdEl.innerText = hasImages(p.getAttribute('info')) ? p.getAttribute('info') : '';
+pdEl.innerText = hasimage(p.getAttribute('info')) ? p.getAttribute('info') : '';
 
-// Image 3
-if (hasImages(p.getAttribute('image3'))) {
-    mgEl3.src = p.getAttribute('image3');
-    dom('#mg3').rem('hide');
+if (hasimage(p.getAttribute('image3'))) {
+dom('#mg3').src = p.getAttribute('image3');
+dom('#mg3').rem('hide');
 } else {
-    dhid('#mg3');
+dhid('#mg3');
 }
 
-// Image 2
-if (hasImages(p.getAttribute('image2'))) {
-    mgEl2.src = p.getAttribute('image2');
-    dom('#mg2').rem('hide');
+if (hasimage(p.getAttribute('image2'))) {
+dom('#mg2').src = p.getAttribute('image2');
+dom('#mg2').rem('hide');
 } else {
-    dhid('#mg2');
+dhid('#mg2');
 }
 
-// Image
-if (hasImages(p.getAttribute('image'))) {
-    mgEl.src = p.getAttribute('image');
-    dom('#mg').rem('hide');
+if (hasimage(p.getAttribute('image'))) {
+dom('#mg').src = p.getAttribute('image');
+dom('#mg').rem('hide');
 } else {
-    dhid('#mg');
+dhid('#mg');
 }
 }, 800);
 });
