@@ -2,15 +2,23 @@
 const pnEl = document.querySelector('#pn');
 const pdEl = document.querySelector('#pd');
 const mgEl = document.querySelector('#mg');
+let pinS = null;
 
 const mg2El = document.querySelector('#mg2')
-
 const mg3El = document.querySelector('#mg3')
-
 const pth = document.querySelectorAll('path');
 const svg = document.querySelector('svg');
 
 let zom = 1, trX = -18.6, trY = 0;
+
+
+const _tP = (element) => {
+if (pinS === element) {
+pinS = null; 
+} else {
+pinS = element;
+}
+};
 
 dhid=(saa)=>{
 document.querySelector(saa).setAttribute('hide','');
@@ -43,10 +51,12 @@ trY = cY - (y * zom);
 };
 
 const rstT = () => {
-zom = 1; 
-trX = -18.6; 
-trY = 0;
-ani();
+(!pinS) && (
+zom = 1, 
+trX = -18.6, 
+trY = 0,
+ani()
+)
 };
 rstT();
 
@@ -119,8 +129,9 @@ cPin = cPinToP;
 ps.forEach(p => p.removeAttribute('stroke'));
 
 if (cp) {
+/*
 cp.setAttribute('stroke', '#88888839');
-cp.setAttribute('stroke-width', '1');
+cp.setAttribute('stroke-width', '1');*/
 dD(cPin, cp, md);
 _dLn(cPin, cp);
 }
@@ -136,14 +147,48 @@ const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 return distance;
 }
 
+const pinset = () => {
+const isPC = window.innerWidth > 1024 && !/Mobi|Android/i.test(navigator.userAgent);
+const pin2 = document.querySelector('#pin2');
+const pin = document.querySelector('#pin');
+
+if (isPC) {
+if (pin2) {
+pin2.style.left = '10vw';
+pin2.style.top = '10svh';
+pin2.style.position = 'fixed';
+}
+
+if (pin) {
+pin2.style.left = '10vw';
+pin2.style.top = '10svh';
+pin.style.position = 'fixed';
+}
+} else {
+if (pin2) {
+pin2.style.left = '40vw';
+pin2.style.top = '20vh';
+pin2.style.position = 'fixed';
+}
+
+if (pin) {
+pin.style.left = '20vw';
+pin.style.top = '40vh';
+pin.style.position = 'fixed';
+}
+}
+};
+  
 const dD=(p, p2)=> {
 const dV = document.getElementById('dD');
 if (!dV) {
 const _hso = document.createElement('_hso');
 _hso.id = 'mI';
-_hso.style.position = 'absolute';
+_hso.style.position = 'fixed';
 
-_hso.setAttribute('bbg','');
+_hso.setAttribute('l','');
+_hso.setAttribute('bdr','15');
+_hso.setAttribute('mbg','');
 _hso.style.padding = '5px';
 document.body.appendChild(_hso);
 }
@@ -179,8 +224,8 @@ line.setAttribute('x1', x1);
 line.setAttribute('y1', y1);
 line.setAttribute('x2', x2);
 line.setAttribute('y2', y2);
-line.setAttribute('stroke', '#88888839');
-line.setAttribute('stroke-width', '1');
+/*line.setAttribute('stroke', '#88888839');
+line.setAttribute('stroke-width', '1');*/
 svg.appendChild(line);
 
 setTimeout(() => {
@@ -240,11 +285,11 @@ if (name && name.trim() && name !== 'unknown') {
 path.setAttribute("name", name);
 path.id = name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '');
 }
-if (info && info.trim() && info !== 'unknown') path.setAttribute("info", info);
-if (image && image.trim() && image !== 'unknown') path.setAttribute("image", image);
-if (image2 && image2.trim() && image2 !== 'unknown') path.setAttribute("image2", image2);
-if (image3 && image3.trim() && image3 !== 'unknown') path.setAttribute("image3", image3);
-if (type && type.trim() && type !== 'unknown') path.setAttribute("type", type);
+if (info && info.trim() && info !== 'unknown') {path.setAttribute("info", info); pinS = null;};
+if (image && image.trim() && image !== 'unknown') {path.setAttribute("image", image); pinS = null;};
+if (image2 && image2.trim() && image2 !== 'unknown') {path.setAttribute("image2", image2); pinS = null;};
+if (image3 && image3.trim() && image3 !== 'unknown') {path.setAttribute("image3", image3); pinS = null;};
+if (type && type.trim() && type !== 'unknown') {path.setAttribute("type", type); pinS = null;};
 
 path.setAttribute("stroke", 'none');
 path.setAttribute("stroke-width", '0');
@@ -269,11 +314,12 @@ movX(cX);
 movY(cY);
 ani();
 
+_tP(p)
+
 setTimeout(() => {
 const hasimage = (attr) => attr && attr.trim() && attr !== 'unknown';
 
-if (
-    hasimage(p.getAttribute('info'))||
+if (hasimage(p.getAttribute('info'))||
 hasimage(p.getAttribute('image')) ||
 hasimage(p.getAttribute('image2')) ||
 hasimage(p.getAttribute('image3'))
@@ -281,6 +327,8 @@ hasimage(p.getAttribute('image3'))
 dom('#isc').rem('hide');
 } else {
 dnh('#isc');
+pinS=null;
+rstT();
 }
 
 pnEl.innerText = p.getAttribute('name') || '';

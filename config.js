@@ -6,6 +6,8 @@ const elsA = document.querySelectorAll('[a]');
 elsA.forEach(el => el.removeAttribute('a'));
 
 }
+
+
 let debounceTimer;
 let debounce = (func, delay) => {
 clearTimeout(debounceTimer);
@@ -57,12 +59,13 @@ let fragment = document.createDocumentFragment();
 results.forEach(r => {
 let el;
 if (r.info || r.image || r.image2 || r.image3) {
-el = document.createElement('a');
+el = document.createElement('p');
 el.innerText = r.name;
 el.href = '#';
-el.setAttribute('left', '');
+el.at('l', '');
+el.at('left', '');
 el.setAttribute('bdr', '25');
-el.setAttribute('mbg2', '');
+el.setAttribute('mbg', '');
 el.onclick = () => {
 pnEl.innerText = r.name;
 pdEl.innerText = r.info;
@@ -82,11 +85,28 @@ const rect = _tPE.getBoundingClientRect();
 const cY = rect.top;
 movY(cY + (cY / 2));
 ani();
+
+_tP(r);
 }};
 } else {
 el = document.createElement('p');
 el.innerText = r.name;
 el.setAttribute('small-p', '');
+el.at('b', '');
+el.onclick = () => {
+const _vimap = dom('#map');
+const _tPE = dom(`#${r.name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '')}`);
+if (_tPE) {
+_vimap.setAttribute('o', '');
+_tPE.setAttribute('a', '');
+const rect = _tPE.getBoundingClientRect();
+const cY = rect.top;
+movY(cY + (cY / 2));
+ani();
+
+_tP(r);
+}
+}
 }
 fragment.append(el);
 });

@@ -21,7 +21,7 @@ set.icon('https://lcup.web.app/img/logo.png');
 <body no-p no-m>
 
 <style>
-* {--matte2:#202331;--blue2:#383c86;--blue:#383c86 !important;
+* {--b2:#383c86 !important;
 animation: fadeIn 0.3s forwards;
 }
 
@@ -38,6 +38,7 @@ position: fixed;
 top: 0; 
 z-index: -2; 
 }
+
 
 @keyframes hidng {
 from { 
@@ -71,7 +72,14 @@ from { opacity: auto; }
 to { opacity: 0; }
 }
 
-nav {bottom:0 !important; position: fixed;}
+body nav {bottom:0 !important; position: fixed;
+margin: auto auto !important;
+max-width: 5.87in !important;
+width: 94.5%;
+height: auto;
+left: 0 !important;
+right: 0 !important;
+}
 nav[top] {bottom:unset !important;top:0 !important; position: fixed;}
 nav[ab][top] {
 flex-flow: row;
@@ -132,9 +140,14 @@ transform: rotate(90deg) translateY(70px);
 [bt]{border-top: var(--black2) solid 1px;}
 [br]{border-right: var(--black2) solid 1px; }
 [bb]{border-bottom: var(--black2) solid 1px;}
-screen[half] {max-width: 45em; max-height: 50vh; width: 100% !important; height: 50vh; 
-right:0; left: unset !important; top: unset; bottom: 0.6in;}
+screen[half] { max-height: 50vh; width: 100% !important; height: 50vh;
+z-index: 5; margin: auto auto !important;
+max-width: 5.98in !important;
+right:0; left: 0 !important; top: unset; bottom: 0in;}
 img {outline: none; border: none; outline: none;}
+#pin,#pin2{
+z-index: 0;
+}
 hr {
 width: 3em; height: 0.1in;
 }
@@ -154,43 +167,43 @@ z-index: 4 !important;
 }
 </style> 
 <bg lbg></bg> 
-<screen id="sloa" lbg layer="4" center>
-<p unbound big>CDNM</p>
-<p unbound mid>Loading Map</p>
+<screen id="sloa" mbg layer="4" center>
+<p unbound no-m no-p l bold big>CD</p>
+<p unbound no-m no-p l  bold big>NM</p>
 <nav>
-<p unbound>If map is invisible, Please reload It's because of Internet</p>
+<p unbound l >TIP: If map is invisible, Reload</p>
 </nav>
 </screen>
-<screen center tbdr="25"
-id="scl" half bbg hide layer="2">
+<screen center small-mb tbdr="25"
+id="scl" half mbg hide layer="2">
 <nav ab no-m no-p top layer="3">
-<a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); rdL(); rstT()">
-<hr m no-m mbg small-px bdr="25">
+<a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); rdL(); pinS=null; rstT()">
+<hr m2 no-m mbg2 small-px bdr="25">
 </a>
 </nav>
-<textarea item mbg2 big-mt oninput="srt(this.value)" placeholder="Search"></textarea>
+<textarea mbg2 b big-mt oninput="srt(this.value)" placeholder="Search"></textarea>
 <div id="sro" scroll="" item-left small-p>
 </div>
 </screen>
 
-<screen center tbdr="25"
-id="isc" half bbg hide layer="4">
+<screen center small-mb tbdr="25"
+id="isc" half mbg hide layer="4">
 
 <nav ab no-m no-p top layer="3">
-<a tr no-m no-p mw  onmousedown="dnh('#isc'); rdL(); rstT()">
-<hr m no-m mbg small-px bdr="25">
+<a tr no-m no-p mw  onmousedown="dnh('#isc'); rdL(); pinS=null; rstT();">
+<hr m2 no-m mbg2 small-px bdr="25">
 </a>
 </nav>
 
 
 <div fadein big-pt scroll>
 <span row big-mb>
-<p id="pd"></p>
+<p b id="pd"></p>
 <span item>
-<img cover bbg hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
-<img cover bbg hide id="mg2" src="https://lcup.web.app/img/logo.png" bdr="15">
+<img cover hide id="mg" src="https://lcup.web.app/img/logo.png" bdr="15">
+<img cover hide id="mg2" src="https://lcup.web.app/img/logo.png" bdr="15">
 
-<img cover bbg hide id="mg3" src="https://lcup.web.app/img/logo.png" bdr="15">
+<img cover hide id="mg3" src="https://lcup.web.app/img/logo.png" bdr="15">
 
 </span></span>
 </div>
@@ -198,21 +211,22 @@ id="isc" half bbg hide layer="4">
 
 </screen>
 <nav top id='tn' hide layer="3">
-<p unbound="" bold no-m  no-p mid>CDNM</p>
+<i style="left:40%; top:50svh;" m class="fa-solid fa-location-pin" id="pin" big layer="2">
 
+</i>
+<i style="left:55%; top:10svh;" g2 class="fa-solid fa-location-pin" id="pin2" big layer="2">
+</i>
 <p id="pn" item-right></p>
 
-<i style="left:3em;" class="fa-solid fa-location-pin" id="pin" big layer="2"></i>
-<i g style="left:4em;" class="fa-solid fa-location-pin" id="pin2" big layer="2"></i>
 </nav>
 
-<nav no-m id='bn' hide layer="3" bbg>
+<nav no-m id='bn' hide tbdr="25" layer="3" mbg>
 
-<a id="sr" mbg2 mw onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
-<i class="fa-solid fa-search" m=""></i>
+<a id="sr" mbg small-px onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
+<i class="fa-solid fa-compass" l mid></i>
 </a>
-<a mbg2 mw onmousedown="rstT()">
-<i class="fa-solid fa-refresh" m=""></i>
+<a mbg small-px onmousedown="rstT()">
+<i class="fa-solid fa-filter" l mid ></i>
 </a>
 
 </nav>
@@ -220,7 +234,7 @@ id="isc" half bbg hide layer="4">
 
 <svg version="1.1" map id="map" xmlns="http://www.w3.org/2000/svg"
 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-width="100%" 
+width="100%"  layer="0"
 viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
@@ -237,6 +251,7 @@ viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 
 <script>
+pinset();
 const lmP = () => {
 const svg = document.getElementById('map');
 
