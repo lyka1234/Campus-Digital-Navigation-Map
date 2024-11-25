@@ -176,7 +176,7 @@ z-index: 4 !important;
 </nav>
 </screen>
 
- 
+
 <screen id="hns" hide mbg layer="4" center>
 
 <a href="dark.html"lbg m>
@@ -192,15 +192,6 @@ z-index: 4 !important;
 <p unbound l no-m no-p>A Map Navigator, Your compass for your path.</p>
 </bon>
 
-<nav no-m layer="2">
-<a mbg small-px onmousedown="hide('#hns');show('#im')">
-<i class="fa-solid fa-globe" m2 mid ></i>
-</a>
-
-<a mbg small-px onmousedown="">
-<i class="fa-solid fa-star" l mid ></i>
-</a>
-</nav>
 </screen>
 <screen center small-mb tbdr="25"
 id="scl" half mbg hide layer="2">
@@ -263,17 +254,29 @@ width="100%"  layer="0"
 viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
+</screen>
 
 <nav no-m id='bn' hide tbdr="25" layer="2" mbg>
+<span id="bn0" row>
 <a mbg small-px onmousedown="">
 <i class="fa-solid fa-globe" l mid ></i>
 </a>
 
-<a mbg small-px onmousedown="hide('#im');show('#hns')">
+<a mbg small-px onmousedown="hide('#im');show('#hns'); hide('#bn0');show('#bn1')">
 <i class="fa-solid fa-star" m2 mid ></i>
 </a>
+
+</span>
+<span id="bn1" hide row>
+<a mbg small-px onmousedown="hide('#hns');show('#im');hide('#bn1');show('#bn0');">
+<i class="fa-solid fa-globe" m2 mid ></i>
+</a>
+
+<a mbg small-px onmousedown="">
+<i class="fa-solid fa-star" l mid ></i>
+</a>
+</span>
 </nav>
-</screen>
 
 </body>
 
