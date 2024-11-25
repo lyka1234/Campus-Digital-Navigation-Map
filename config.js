@@ -62,10 +62,11 @@ if (r.info || r.image || r.image2 || r.image3) {
 el = document.createElement('p');
 el.innerText = r.name;
 el.href = '#';
-el.at('l', '');
+el.at('m', '');
+el.at('bdr', '25');
+el.at('small-p', '');
 el.at('left', '');
-el.setAttribute('bdr', '25');
-el.setAttribute('mbg', '');
+el.setAttribute('lbg2', '');
 el.onclick = () => {
 pnEl.innerText = r.name;
 pdEl.innerText = r.info;
@@ -92,7 +93,9 @@ _tP(r);
 el = document.createElement('p');
 el.innerText = r.name;
 el.setAttribute('small-p', '');
-el.at('b', '');
+el.at('bdr', '25');
+el.at('l', '');
+el.at('lol', '');
 el.onclick = () => {
 const _vimap = dom('#map');
 const _tPE = dom(`#${r.name.toLowerCase().replace(/\s+/g, '').replace(/[^\w\-]/g, '')}`);
