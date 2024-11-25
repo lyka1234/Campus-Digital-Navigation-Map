@@ -168,7 +168,7 @@ z-index: 4 !important;
 </style> 
 <bg lbg></bg> 
 
-<screen id="sloa"  mbg layer="4" center>
+<screen id="sloa"  bbg layer="4" center>
 <p unbound no-m no-p l bold big>CD</p>
 <p unbound no-m no-p l  bold big>NM</p>
 <nav>
@@ -176,11 +176,14 @@ z-index: 4 !important;
 </nav>
 </screen>
 
- 
-<screen id="hns" hide mbg layer="4" center>
 
-<a href="dark.html"lbg m>
-<i class="fa-solid fa-moon"></i>Dark mode</a>
+<screen id="hns" hide bbg layer="4" center>
+
+<list>
+<a href="index.html"lbg m>
+<i class="fa-solid fa-sun"></i>
+Light mode</a>
+</list>
 <bon left>
 <p unbound l no-m no-p bold>What is these pin?</p>
 <p unbound l no-m no-p>The White is for where you start</p>
@@ -193,33 +196,33 @@ z-index: 4 !important;
 </bon>
 
 <nav no-m layer="2">
-<a mbg small-px onmousedown="hide('#hns');show('#im')">
+<a bbg small-px onmousedown="hide('#hns');show('#im')">
 <i class="fa-solid fa-globe" m2 mid ></i>
 </a>
 
-<a mbg small-px onmousedown="">
+<a bbg small-px onmousedown="">
 <i class="fa-solid fa-star" l mid ></i>
 </a>
 </nav>
 </screen>
 <screen center small-mb tbdr="25"
-id="scl" half mbg hide layer="2">
+id="scl" half bbg hide layer="2">
 <nav ab no-m no-p top layer="3">
 <a tr no-m no-p mw onmousedown="show('#sr'); dnh('#scl'); rdL(); pinS=null; rstT()">
-<hr m2 no-m mbg2 small-px bdr="25">
+<hr m2 no-m bbg2 small-px bdr="25">
 </a>
 </nav>
-<input mbg2 b big-mt oninput="srt(this.value)" placeholder="Search"></input>
+<input bbg2 b big-mt oninput="srt(this.value)" placeholder="Search"></input>
 <div id="sro" scroll="" item-left small-p mid-pb>
 </div>
 </screen>
 
 <screen center small-mb tbdr="25"
-id="isc" half mbg hide layer="4">
+id="isc" half bbg hide layer="4">
 
 <nav ab no-m no-p top layer="3">
 <a tr no-m no-p mw  onmousedown="dnh('#isc'); rdL(); pinS=null; rstT();">
-<hr m2 no-m mbg2 small-px bdr="25">
+<hr m2 no-m bbg2 small-px bdr="25">
 </a>
 </nav>
 
@@ -242,11 +245,11 @@ id="isc" half mbg hide layer="4">
 <screen style="" no-p no-m id="im" center layer="0">
 <nav top id='tn' hide layer="3">
 
-<a mbg small-px onmousedown="rstT()">
+<a bbg small-px onmousedown="rstT()">
 <i class="fa-solid fa-filter" l mid ></i>
 </a>
 
-<a id="sr" mbg small-px onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
+<a id="sr" bbg small-px onmousedown="show('#scl');dnh('#sr'); dnh('#isc') ">
 <i class="fa-solid fa-search" l mid></i>
 </a>
 <i style="left:40%; top:50svh;" m class="fa-solid fa-location-pin" id="pin" big layer="2">
@@ -264,12 +267,12 @@ viewBox="0 0 668 800" enable-background="new 0 0 668 800" xml:space="preserve">
 
 </svg>
 
-<nav no-m id='bn' hide tbdr="25" layer="2" mbg>
-<a mbg small-px onmousedown="">
+<nav no-m id='bn' hide tbdr="25" layer="2" bbg>
+<a bbg small-px onmousedown="">
 <i class="fa-solid fa-globe" l mid ></i>
 </a>
 
-<a mbg small-px onmousedown="hide('#im');show('#hns')">
+<a bbg small-px onmousedown="hide('#im');show('#hns')">
 <i class="fa-solid fa-star" m2 mid ></i>
 </a>
 </nav>
